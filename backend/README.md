@@ -1,5 +1,43 @@
 # Backend (Laravel) — MiniLiga Express
 
+## Instrucciones de ejecución de proyecto terminado
+
+**Autor:** Zuriel Díaz Agustin  
+**Descripción:** API para gestionar una liga deportiva utilizando Laravel.  
+
+## Tecnologías utilizadas
+- **PHP:** 8.3.16  
+- **Laravel:** 12.x  
+- **Base de datos:** SQLite (entorno local y pruebas)  
+- **Testing:** PHPUnit 11.5.3
+
+## Instalación y ejecución
+1. Instalar dependencias:
+    ```bash
+    composer install
+    ```
+2. Ejecutar migraciones:
+    ```bash
+    php artisan migrate
+    ```
+3. Poblar la base de datos con datos de ejemplo:
+    ```bash
+    php artisan db:seed --class=TeamsAndSportMatchesSeeder
+    ```
+
+## Ejecución de tests
+Para correr los tests de la tabla de posiciones:
+```bash
+php artisan test --filter=StandingsTest
+```
+
+## Documentacion de Api
+1.  La colección de Postman Mini Liga Express.postman_collection se encuentra en la carpeta docs/.
+    Puedes importarla en Postman para probar todos los endpoints de la API.
+
+
+## Instrucciones de ejecución de proyecto base
+
 ## Objetivo
 Exponer endpoints:
 - `GET /api/teams`
