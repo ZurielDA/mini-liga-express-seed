@@ -16,6 +16,10 @@ class Team extends Model
         'goals_against',
     ];
 
+    protected $appends = [
+        'played'
+    ];
+
     /**
      * Get all of the homeSoportMatches for the Team
      */
@@ -30,5 +34,13 @@ class Team extends Model
     public function awayMatches(): HasMany
     {
         return $this->hasMany(SportMatch::class, 'away_team_id');
+    }
+
+    public function getPlayedAttribute(): int
+    {
+        $homePlayed = $this->homeSoportMatches()->whereNotNull('home_score')->whereNotNull('away_score')->count();
+        $awayPlayed = $this->awayMatches()->whereNotNull('home_score')->whereNotNull('away_score')->count();
+
+        return $homePlayed + $awayPlayed;
     }
 }
