@@ -11,26 +11,26 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class SportMatchService implements ISportMatchService
 {
-    protected $teamRepository;
+    protected $sportMatchRepository;
 
-    public function __construct(ISportMatchRepository $teamRepository)
+    public function __construct(ISportMatchRepository $sportMatchRepository)
     {
-        $this->teamRepository = $teamRepository;
+        $this->sportMatchRepository = $sportMatchRepository;
     }
 
     public function getAll(): Collection
     {
-        return $this->teamRepository->getAll();
+        return $this->sportMatchRepository->getAll();
     }
 
     public function getByConditions(array $conditions): ?SportMatch
     {
-        return $this->teamRepository->getByConditions($conditions);
+        return $this->sportMatchRepository->getByConditions($conditions);
     }
 
     public function save(array $properties): ?SportMatch
     {
-        $existSportMatch = $this->teamRepository->getByConditions([
+        $existSportMatch = $this->sportMatchRepository->getByConditions([
             ['home_team_id', $properties['home_team_id']],
             ['away_team_id', $properties['away_team_id']],
             ['played_at', $properties['played_at']],
@@ -40,7 +40,7 @@ class SportMatchService implements ISportMatchService
             throw new AlreadyExistsException('Ya existe un partido con los mismos equipos y el mismo dia.');
         }
 
-        return $this->teamRepository->save($properties);
+        return $this->sportMatchRepository->save($properties);
     }
 
     public function update(int $id, array $properties): ?SportMatch
@@ -53,7 +53,7 @@ class SportMatchService implements ISportMatchService
             throw new ModelNotFoundException('El partido no existe.');
         }
 
-        $this->teamRepository->update($foundSportMatch->id, $properties);
+        $this->sportMatchRepository->update($foundSportMatch->id, $properties);
 
         return $foundSportMatch->refresh();
     }
