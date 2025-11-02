@@ -5,10 +5,12 @@ namespace App\Providers;
 use App\Interfaces\Repositories\ISportMatchRepository;
 use App\Interfaces\Repositories\ITeamRepository;
 use App\Interfaces\Services\ISportMatchService;
+use App\Interfaces\Services\IStandingsService;
 use App\Interfaces\Services\ITeamService;
 use App\Repositories\SportMatchRepository;
 use App\Repositories\TeamRepository;
 use App\Services\SportMatchService;
+use App\Services\StandingsService;
 use App\Services\TeamService;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
         // Service
         $this->app->bind(ITeamService::class, TeamService::class);
         $this->app->bind(ISportMatchService::class, SportMatchService::class);
+        $this->app->bind(IStandingsService::class, StandingsService::class);
     }
 
     /**
