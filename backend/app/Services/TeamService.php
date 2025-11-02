@@ -8,8 +8,8 @@ use App\Interfaces\Services\ITeamService;
 use App\Models\Team;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 
 class TeamService implements ITeamService
@@ -56,8 +56,7 @@ class TeamService implements ITeamService
             throw new ModelNotFoundException('El equipo no existe.');
         }
 
-        if($id != $properties['id'])
-        {
+        if ($id != $properties['id']) {
             throw new InvalidArgumentException('No se puede actualizar por que existen propiedades no validas');
         }
 

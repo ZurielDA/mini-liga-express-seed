@@ -31,14 +31,13 @@ class SportMatchService implements ISportMatchService
     public function save(array $properties): ?SportMatch
     {
         $existSportMatch = $this->teamRepository->getByConditions([
-            ["home_team_id", $properties['home_team_id']],
-            ["away_team_id", $properties['away_team_id']],
-            ["played_at", $properties['played_at']]
+            ['home_team_id', $properties['home_team_id']],
+            ['away_team_id', $properties['away_team_id']],
+            ['played_at', $properties['played_at']],
         ]);
 
-        if ($existSportMatch)
-        {
-            throw new AlreadyExistsException("Ya existe un partido con los mismos equipos y el mismo dia.");
+        if ($existSportMatch) {
+            throw new AlreadyExistsException('Ya existe un partido con los mismos equipos y el mismo dia.');
         }
 
         return $this->teamRepository->save($properties);
