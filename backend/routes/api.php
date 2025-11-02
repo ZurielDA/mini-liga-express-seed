@@ -1,15 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\SportMatchController;
 use App\Http\Controllers\Api\StandingsController;
-
-
+use App\Http\Controllers\Api\TeamController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/teams', [TeamController::class, 'index']);
-Route::post('/teams', [TeamController::class, 'store']);
+Route::post('/teams', [TeamController::class, 'save']);
 
 Route::post('/matches/{id}/result', [SportMatchController::class, 'result']);
 
