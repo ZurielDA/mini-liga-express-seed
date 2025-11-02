@@ -66,4 +66,29 @@ class TeamService implements ITeamService
 
         return $foundTeam->refresh();
     }
+
+    public function addGoals(int $home_team_id, int $home_score, int $away_team_id, int $away_score): void
+    {
+        $home_team = $this->getByConditions([['id', $home_team_id]]);
+
+        $home_team->goals_for += $home_score;
+        $home_team->goals_against += $away_score;
+
+        $this->update($home_team->id, [
+            'id' => $home_team->id,
+            'goals_for' => $home_team->goals_for,
+            'goals_against' => $home_team->goals_against,
+        ]);
+
+        $away_team = $this->getByConditions([['id', $away_team_id]]);
+
+        $away_team->goals_for += $away_score;
+        $away_team->goals_against += $home_score;
+
+        $this->update($away_team->id, [
+            'id' => $away_team->id,
+            'goals_for' => $away_team->goals_for,
+            'goals_against' => $away_team->goals_against,
+        ]);
+    }
 }

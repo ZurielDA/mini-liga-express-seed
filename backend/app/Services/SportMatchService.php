@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Exceptions\AlreadyExistsException;
 use App\Interfaces\Repositories\ISportMatchRepository;
 use App\Interfaces\Services\ISportMatchService;
+use App\Interfaces\Services\ITeamService;
 use App\Models\SportMatch;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -13,9 +14,12 @@ class SportMatchService implements ISportMatchService
 {
     protected $sportMatchRepository;
 
-    public function __construct(ISportMatchRepository $sportMatchRepository)
+    protected $teamService;
+
+    public function __construct(ISportMatchRepository $sportMatchRepository, ITeamService $teamService)
     {
         $this->sportMatchRepository = $sportMatchRepository;
+        $this->teamService = $teamService;
     }
 
     public function getAll(): Collection
@@ -55,6 +59,15 @@ class SportMatchService implements ISportMatchService
 
         $this->sportMatchRepository->update($foundSportMatch->id, $properties);
 
-        return $foundSportMatch->refresh();
+        $foundSportMatch->refresh();
+
+        $this->teamService->addGoals(
+            $foundSportMatch->home_team_id,
+            $foundSportMatch->home_score,
+            $foundSportMatch->away_team_id,
+            $foundSportMatch->away_score,
+        );
+
+        return $foundSportMatch;
     }
 }
