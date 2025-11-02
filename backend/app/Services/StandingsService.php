@@ -59,7 +59,7 @@ class StandingsService implements IStandingsService
         $homeSoportMatches->each(function (SportMatch $sportMatch) use (&$point) {
             if ($sportMatch->home_score > $sportMatch->away_score) {
                 $point += POINTS::WON->value;
-            } elseif ($sportMatch->home_score > $sportMatch->away_score) {
+            } elseif ($sportMatch->home_score == $sportMatch->away_score) {
                 $point += POINTS::DRAW->value;
             } elseif ($sportMatch->home_score < $sportMatch->away_score) {
                 $point += POINTS::LOST->value;
@@ -69,7 +69,7 @@ class StandingsService implements IStandingsService
         $awayMatches->each(function (SportMatch $sportMatch) use (&$point) {
             if ($sportMatch->away_score > $sportMatch->home_score) {
                 $point += POINTS::WON->value;
-            } elseif ($sportMatch->away_score > $sportMatch->home_score) {
+            } elseif ($sportMatch->away_score == $sportMatch->home_score) {
                 $point += POINTS::DRAW->value;
             } elseif ($sportMatch->away_score < $sportMatch->home_score) {
                 $point += POINTS::LOST->value;
