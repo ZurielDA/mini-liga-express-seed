@@ -1,1 +1,80 @@
-<p>teams works!</p>
+<div class="h-screen flex justify-center bg-gray-950">
+  <div class="grid grid-cols-1 content-center gap-4">
+    <section>
+      <div class="flex justify-end">
+        <a routerLink="/standings" pButton>
+          <span pButtonLabel>Clasificación</span>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h1 class="text-2xl font-bold my-6 capitalize">registrar equipo</h1>
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <p-inputgroup>
+          <input pInputText placeholder="Nombre de equipo" formControlName="name" />
+          <p-inputgroup-addon>
+            <button pButton [loading]="loading" class="capitalize">
+              <i class="pi pi-check" pButtonIcon></i>
+              <span pButtonLabel>{{ loading ? 'guardando' : 'guardar' }}</span>
+            </button>
+          </p-inputgroup-addon>
+        </p-inputgroup>
+      </form>
+    </section>
+
+    <p-divider />
+
+    <section>
+      <h1 class="text-2xl font-bold my-6 capitalize">listado de equipos</h1>
+
+      <p-table
+        [value]="teams"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        class=""
+      >
+        <ng-template #header>
+          <tr>
+            <th pSortableColumn="name" style="width: 20%">
+              <div class="flex items-center gap-2 capitalize">
+                nombre
+                <p-sortIcon field="name" />
+              </div>
+            </th>
+            <th pSortableColumn="played" style="width: 20%">
+              <div class="flex items-center gap-2 capitalize">
+                partidos jugados
+                <p-sortIcon field="played" />
+              </div>
+            </th>
+            <th pSortableColumn="goals_for" style="width: 20%">
+              <div class="flex items-center gap-2 capitalize">
+                goles a favor
+                <p-sortIcon field="goals_for" />
+              </div>
+            </th>
+            <th pSortableColumn="goals_against" style="width: 20%">
+              <div class="flex items-center gap-2 capitalize">
+                goles en contra
+                <p-sortIcon field="goals_against" />
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-product>
+          <tr>
+            <td class="capitalize font-semibold">{{ product.name }}</td>
+            <td>{{ product.played }}</td>
+            <td>{{ product.goals_for }}</td>
+            <td>{{ product.goals_against }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </section>
+
+    <p-toast />
+  </div>
+</div>
