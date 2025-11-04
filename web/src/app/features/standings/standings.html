@@ -1,0 +1,77 @@
+<div class="h-screen flex justify-center bg-gray-950">
+  <div class="grid grid-cols-1 content-center gap-4">
+    <section>
+      <div class="flex justify-end capitalize">
+        <a routerLink="/teams" pButton>
+          <span pButtonLabel>lista de equipos</span>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h1 class="text-2xl font-bold my-6 capitalize">tabla de clasificación</h1>
+
+      <p-table
+        [value]="standings"
+        [tableStyle]="{ 'min-width': '80rem' }"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        class=""
+      >
+        <ng-template #header>
+          <tr>
+            <th pSortableColumn="name" style="width: 20%">
+              <div class="flex items-center gap-2 capitalize">
+                nombre
+                <p-sortIcon field="name" />
+              </div>
+            </th>
+            <th pSortableColumn="played" style="width: 20%">
+              <div class="flex items-center gap-2 capitalize">
+                partidos jugados
+                <p-sortIcon field="played" />
+              </div>
+            </th>
+            <th pSortableColumn="played" style="width: 20%">
+              <div class="flex items-center gap-2 capitalize">
+                puntos
+                <p-sortIcon field="played" />
+              </div>
+            </th>
+            <th pSortableColumn="goals_for" style="width: 20%">
+              <div class="flex items-center gap-2 capitalize">
+                goles a favor
+                <p-sortIcon field="goals_for" />
+              </div>
+            </th>
+            <th pSortableColumn="goals_against" style="width: 20%">
+              <div class="flex items-center gap-2 capitalize">
+                goles en contra
+                <p-sortIcon field="goals_against" />
+              </div>
+            </th>
+            <th pSortableColumn="goals_against" style="width: 20%">
+              <div class="flex items-center gap-2 capitalize">
+                diferencia de goles
+                <p-sortIcon field="goals_against" />
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-product>
+          <tr>
+            <td>{{ product.team }}</td>
+            <td>{{ product.played }}</td>
+            <td>{{ product.point }}</td>
+            <td>{{ product.goals_for }}</td>
+            <td>{{ product.goals_against }}</td>
+            <td>{{ product.goal_diff }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </section>
+
+    <p-toast />
+  </div>
+</div>
