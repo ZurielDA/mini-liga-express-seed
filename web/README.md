@@ -1,5 +1,33 @@
 # Web (Angular) — MiniLiga Express
 
+
+## Instrucciones de ejecución de proyecto terminado
+
+**Autor:** Zuriel Díaz Agustin  
+**Descripción:** Aplicación frontend para gestionar una liga deportiva. Se conecta a la API desarrollada en Laravel.
+
+## Tecnologías utilizadas
+- **Node.js:** 22.12  
+- **Gestor de paquetes:** npm  
+- **Angular:** 20.3.0  
+- **TypeScript:** 5.9.2  
+- **Primeng:** 20.3.0",
+- **TailwindCSS:** 4.1.16 
+
+## Instalación y ejecución
+
+## Instalación y ejecución
+1. Instalar dependencias:
+    ```bash
+    npm install
+    ```
+2. Ejecutar proyecto:
+    ```bash
+    ng serve
+    ```
+
+
+
 ## Objetivo
 Dos pestañas:
 1) **Equipos**: listado + alta.
