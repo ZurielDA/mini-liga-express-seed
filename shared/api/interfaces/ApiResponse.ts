@@ -1,0 +1,5 @@
+export interface ApiResponse {
+  message:string;
+  data?:object | Array<any>[];
+  error?:string;
+}
