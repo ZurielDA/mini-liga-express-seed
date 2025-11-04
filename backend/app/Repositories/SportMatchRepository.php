@@ -18,6 +18,11 @@ class SportMatchRepository implements ISportMatchRepository
         return SportMatch::where($condition)->first();
     }
 
+    public function getCollectByConditions(array $condition): ?Collection
+    {
+        return SportMatch::where($condition)->get();
+    }
+
     public function save(array $properties): SportMatch
     {
         return SportMatch::create($properties);
