@@ -20,7 +20,7 @@ class TeamRepository implements ITeamRepository
 
     public function save(array $properties): Team
     {
-        return Team::create($properties);
+        return Team::create($properties)->refresh();
     }
 
     public function update(int $id, array $properties): int
