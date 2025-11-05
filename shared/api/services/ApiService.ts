@@ -56,4 +56,6 @@ export class ApiService {
         body: JSON.stringify(updateResult),
       });
   }
+
+  getMatchesPendig= async (): Promise<ApiResponse>  => await this.request('/api/matches/pending', { method: 'GET' });
 }

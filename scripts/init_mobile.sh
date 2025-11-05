@@ -31,8 +31,8 @@ ENV
 
 # Página sencilla para matches y report-result
 if [ -d src/app ]; then
-  npx ng g page pages/matches --skip-tests
-  npx ng g page pages/report-result --skip-tests
-  npx ng g service services/api --skip-tests || true
+  npx ng g page pages/matches
+  npx ng g page pages/report-result
+  npx ng g service services/api
   echo "Esqueleto Ionic creado."
 fi

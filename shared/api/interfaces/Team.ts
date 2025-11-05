@@ -1,5 +1,6 @@
-export interface Team {
+import { Match } from "./Match";
 
+export interface Team {
   id: number,
   name: string,
   goals_for: number,
@@ -7,8 +8,8 @@ export interface Team {
   created_at: string,
   updated_at: string,
   played: number,
-  home_soport_matches: [],
-  away_matches: [],
+  home_soport_matches: Match[],
+  away_matches: Match[],
 }
 
 export interface TeamCreate {
