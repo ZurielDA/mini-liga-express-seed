@@ -26,6 +26,8 @@ import {
 
 import { ApiService } from 'src/app/services/apiService';
 import { ApiResponse, Match, UpdateResult } from '@miniliga/api';
+import { ViewWillEnter } from '@ionic/angular';
+import { CameraService } from 'src/app/services/cameraService';
 
 @Component({
   selector: 'app-matches',
@@ -59,7 +61,7 @@ import { ApiResponse, Match, UpdateResult } from '@miniliga/api';
     IonLoading,
   ],
 })
-export class MatchesPage implements OnInit {
+export class MatchesPage implements OnInit, ViewWillEnter {
   private formBuilder = inject(FormBuilder);
 
   updateResultForm = this.formBuilder.group({
@@ -71,10 +73,13 @@ export class MatchesPage implements OnInit {
 
   constructor(
     private apiServices: ApiService,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private cameraService: CameraService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewWillEnter(): void {
     this.loadMatchesPending(true);
   }
 
@@ -118,6 +123,8 @@ export class MatchesPage implements OnInit {
 
   async confirm() {
     if (this.updateResultForm.valid) {
+      await this.cameraService.getPhotoAlbum();
+
       const loading = await this.loadingCtrl.create({
         message: 'Guardando resultado...',
       });
