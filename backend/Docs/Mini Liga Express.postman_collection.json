@@ -132,6 +132,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Matches Pending",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}} /api/matches/pending",
+							"host": [
+								"{{url}} "
+							],
+							"path": [
+								"api",
+								"matches",
+								"pending"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

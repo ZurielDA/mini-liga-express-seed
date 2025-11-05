@@ -9,6 +9,8 @@ interface ISportMatchService
 {
     public function getAll(): Collection;
 
+    public function getPending(): Collection;
+
     public function getByConditions(array $conditions): ?SportMatch;
 
     public function save(array $properties): ?SportMatch;

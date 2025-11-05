@@ -37,6 +37,25 @@ class SportMatchController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     */
+    public function pending()
+    {
+        try {
+            return response()->json([
+                'message' => 'Partidos recuperados con éxito',
+                'data' => $this->sportMatchService->getPending(),
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al recuperar los partidos',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function save(Request $request)

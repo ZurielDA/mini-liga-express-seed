@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Tabla de Clasificación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-list>
+    <ion-list-header>
+      <ion-label> {{ standings.length > 0 ? 'Tabla de Clasificación' : 'Sin equipos para la clasificación' }}</ion-label>
+    </ion-list-header>
+
+    @for (standing of standings; track $index; let i = $index) {
+
+      @if(i == 0){
+        <ion-item>
+      <ion-grid [fixed]="true">
+        <ion-row>
+          <ion-col>Nombre</ion-col>
+          <ion-col>Part.</ion-col>
+          <ion-col>Punt.</ion-col>
+          <ion-col>Gol A.</ion-col>
+          <ion-col>Gol C.</ion-col>
+          <ion-col>Dif G.</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+      }
+      <ion-item>
+      <ion-grid [fixed]="true">
+        <ion-row>
+          <ion-col>{{ standing.team }}</ion-col>
+          <ion-col>{{ standing.played }}</ion-col>
+          <ion-col>{{ standing.point }}</ion-col>
+          <ion-col>{{ standing.goals_for }}</ion-col>
+          <ion-col>{{ standing.goals_against }}</ion-col>
+          <ion-col>{{ standing.goal_diff}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    }
+  </ion-list>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tabla de Clasificación</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-content>

@@ -11,6 +11,8 @@ interface ISportMatchRepository
 
     public function getByConditions(array $condition): ?SportMatch;
 
+    public function getCollectByConditions(array $condition): ?Collection;
+
     public function save(array $properties): ?SportMatch;
 
     public function update(int $id, array $properties): int;
