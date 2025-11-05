@@ -19,9 +19,9 @@ class SportMatch extends Model
     ];
 
     /**
-     * Get the homeTema that owns the SportMatch
+     * Get the homeTeam that owns the SportMatch
      */
-    public function homeTema(): BelongsTo
+    public function homeTeam(): BelongsTo
     {
         return $this->belongsTo(Team::class, 'home_team_id');
     }

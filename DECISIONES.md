@@ -24,3 +24,15 @@
 ### Próximos pasos / Mejoras pendientes
 1. Se pueden establecer **Interfaces base** de las cuales otras interfaces puedan extender, especialmente para propiedades como **id, created_at y updated_at**.
 2. El punto más crítico que podría modificarse para lograr mejoras es **ApiServices**, ubicado en **shared/api/ApiServices**. Este punto es delicado ya que se consume en ambos proyectos y requiere cuidado para no romper funcionalidades existentes. Para ello, se debera agregar validaciones mas especificacas sobre los **Estatus Http** y asegurar que tanto la versión web como la móvil interpreten de forma correcta. También se deberan crear funciones propias para **Simular interceptores** que Angular proporciona por defecto. En caso necesario, podría desarrollarse un mini proyecto Angular que contenga únicamente un service encargado de las solicitudes al backend, permitiendo un manejo centralizado y consistente en todo el frontend.
+
+
+
+## Mobile
+
+### Trade-offs / Decisiones tomadas
+1. Dado que nunca se había utilizado **Ionic**, se decidió apegarse a lo que indica la documentación. En este caso no se agregó ninguna librería externa para no complicar el pequeño desarrollo.
+2. La obtención de los partidos y la actualización de los mismos se realiza dentro de un mismo componente por mayor practicidad. A cambio, se utilizó el componente **ReportResult** para mostrar las clasificaciones de los equipos.
+
+### Próximos pasos / Mejoras pendientes
+1. Dado que Ionic trabaja sobre Angular y ya contamos con un proyecto web en Angular, lo ideal sería lograr que ambos proyectos compartieran la mayor cantidad de tecnologías posible, para mantener una misma línea de trabajo y poder trasladar elementos del **Web** al **Mobile** y viceversa.
+2. Revisar más a detalle el código y agregar **validaciones** y bloques **try-catch** donde sea necesario, para prevenir que el usuario realice acciones no deseadas o, en caso de un error, evitar que la aplicación se rompa.

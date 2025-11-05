@@ -9,6 +9,7 @@ Route::get('/teams', [TeamController::class, 'index']);
 Route::post('/teams', [TeamController::class, 'save']);
 
 Route::get('/matches', [SportMatchController::class, 'index']);
+Route::get('/matches/pending', [SportMatchController::class, 'pending']);
 Route::post('/matches', [SportMatchController::class, 'save']);
 Route::post('/matches/{id}/result', [SportMatchController::class, 'result']);
 

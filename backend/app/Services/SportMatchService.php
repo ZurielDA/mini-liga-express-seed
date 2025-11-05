@@ -27,6 +27,14 @@ class SportMatchService implements ISportMatchService
         return $this->sportMatchRepository->getAll();
     }
 
+    public function getPending(): Collection
+    {
+        return $this->sportMatchRepository->getCollectByConditions([
+            ['home_score', null],
+            ['away_score', null]
+        ]);
+    }
+
     public function getByConditions(array $conditions): ?SportMatch
     {
         return $this->sportMatchRepository->getByConditions($conditions);

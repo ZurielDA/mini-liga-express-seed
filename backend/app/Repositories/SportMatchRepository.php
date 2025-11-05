@@ -10,12 +10,17 @@ class SportMatchRepository implements ISportMatchRepository
 {
     public function getAll(): Collection
     {
-        return SportMatch::with(['homeTema', 'awayTeam'])->get();
+        return SportMatch::with(['homeTeam', 'awayTeam'])->get();
     }
 
     public function getByConditions(array $condition): ?SportMatch
     {
         return SportMatch::where($condition)->first();
+    }
+
+    public function getCollectByConditions(array $condition): ?Collection
+    {
+        return SportMatch::with(['homeTeam', 'awayTeam'])->where($condition)->get();
     }
 
     public function save(array $properties): SportMatch
