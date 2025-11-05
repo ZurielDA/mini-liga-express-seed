@@ -15,5 +15,7 @@ export class ApiService {
 
   getMatchesPendig = () => this.apiServiceShared.getMatchesPendig();
 
+  getStandings = () => this.apiServiceShared.getStandings();
+
   updateResult = (id:number, updateResult:UpdateResult) => this.apiServiceShared.updateMatch(id, updateResult);
 }
