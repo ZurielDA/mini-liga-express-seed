@@ -1,11 +1,6 @@
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  FormBuilder,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   IonContent,
   IonHeader,
@@ -15,25 +10,23 @@ import {
   IonLabel,
   IonList,
   IonListHeader,
-  IonButton,
-  IonButtons,
-  IonInput,
-  IonModal,
-  IonIcon,
-  IonLoading,
   LoadingController,
-   IonCol, IonGrid, IonRow
+  IonCol,
+  IonGrid,
+  IonRow,
 } from '@ionic/angular/standalone';
 
 import { ApiService } from 'src/app/services/apiService';
-import { ApiResponse, Match, Standing, UpdateResult } from '@miniliga/api';
+import { ApiResponse, Standing } from '@miniliga/api';
+import { ViewWillEnter } from '@ionic/angular';
 
 @Component({
   selector: 'app-report-result',
   templateUrl: './report-result.page.html',
   styleUrls: ['./report-result.page.scss'],
   standalone: true,
-  imports: [IonContent,
+  imports: [
+    IonContent,
     IonHeader,
     IonTitle,
     IonToolbar,
@@ -51,37 +44,47 @@ import { ApiResponse, Match, Standing, UpdateResult } from '@miniliga/api';
     IonTitle,
     IonToolbar,
     ReactiveFormsModule,
-    IonCol, IonGrid, IonRow]
+    IonCol,
+    IonGrid,
+    IonRow,
+  ],
 })
-export class ReportResultPage implements OnInit {
-
+export class ReportResultPage implements OnInit, ViewWillEnter {
   standings: Standing[] = [];
 
-  constructor( private apiServices: ApiService, private loadingCtrl: LoadingController) { }
+  constructor(
+    private apiServices: ApiService,
+    private loadingCtrl: LoadingController
+  ) {}
 
-  async ngOnInit():Promise<void>{
+  async ngOnInit(): Promise<void> {}
 
+  async ionViewWillEnter() {
+    await this.loadStandings();
+  }
+
+  async loadStandings() {
     const loading = await this.loadingCtrl.create({
-        message: 'Recuperando clasificación...',
-      });
-
-      loading.present();
-
-    this.apiServices.getStandings().then(async (value: ApiResponse) => {
-      if (value.status == 200) {
-        this.standings = value.data as Standing[];
-
-      } else {
-
-        const loadingError = await this.loadingCtrl.create({
-          message: 'No se pudo recuperar la clasificación...',
-        });
-
-        loadingError.present();
-
-      }
-    }).finally(()=>{
-        loading.dismiss();
+      message: 'Recuperando clasificación...',
     });
+
+    loading.present();
+
+    this.apiServices
+      .getStandings()
+      .then(async (value: ApiResponse) => {
+        if (value.status == 200) {
+          this.standings = value.data as Standing[];
+        } else {
+          const loadingError = await this.loadingCtrl.create({
+            message: 'No se pudo recuperar la clasificación...',
+          });
+
+          loadingError.present();
+        }
+      })
+      .finally(() => {
+        loading.dismiss();
+      });
   }
 }
