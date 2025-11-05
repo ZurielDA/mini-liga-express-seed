@@ -10,7 +10,7 @@ class SportMatchRepository implements ISportMatchRepository
 {
     public function getAll(): Collection
     {
-        return SportMatch::with(['homeTema', 'awayTeam'])->get();
+        return SportMatch::with(['homeTeam', 'awayTeam'])->get();
     }
 
     public function getByConditions(array $condition): ?SportMatch
@@ -20,7 +20,7 @@ class SportMatchRepository implements ISportMatchRepository
 
     public function getCollectByConditions(array $condition): ?Collection
     {
-        return SportMatch::where($condition)->get();
+        return SportMatch::with(['homeTeam', 'awayTeam'])->where($condition)->get();
     }
 
     public function save(array $properties): SportMatch
